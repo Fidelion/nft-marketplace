@@ -5,7 +5,11 @@ import './ERC721.sol';
 import './interfaces/IERC721Enummerable.sol';
 
 abstract contract ERC721Enummerable is ERC721, IERC721Enummerable{
-
+    constructor() {
+        _registerInterface(bytes4(keccak256('totalSupply(bytes4)')^
+        keccak256('tokenOfOwnerByIndex(bytes4)')^
+        keccak256('tokenByIndex(bytes4)')));
+    }
     uint256[] private _allTokens;
 
     // mapping from tokenId to position in _allTokens array

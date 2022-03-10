@@ -11,6 +11,12 @@ contract ERC721 is IERC721, ERC165, IERC721Metadata {
     using Strings for uint256;
 
     constructor(string memory name_, string memory symbol_) {
+        _registerInterface(bytes4(keccak256('balanceOf(bytes4)')^keccak256('ownerOf(bytes4)')^
+        keccak256('safeTransferFrom(bytes4)')^keccak256('safeTrasnferFrom(bytes4)')^
+        keccak256('transferFrom(bytes4)')^keccak256('approve(bytes4)')^
+        keccak256('setApprovalForAll(bytes4)')^keccak256('getApproved(bytes4)')^
+        keccak256('isApprovedForAll(bytes4)')));
+        
         _name = name_;
         _symbol = symbol_;
     }
