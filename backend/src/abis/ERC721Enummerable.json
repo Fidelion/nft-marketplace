@@ -411,22 +411,22 @@
         1072
       ],
       "IERC165": [
-        1209
+        1242
       ],
       "IERC721": [
-        1309
+        1342
       ],
       "IERC721Enummerable": [
-        1335
+        1368
       ],
       "IERC721Metadata": [
-        1355
+        1388
       ],
       "IERC721Receiver": [
-        1372
+        1405
       ],
       "Strings": [
-        1574
+        1642
       ]
     },
     "id": 1073,
@@ -463,7 +463,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 1073,
-        "sourceUnit": 1336,
+        "sourceUnit": 1369,
         "src": "80:45:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -488,7 +488,7 @@
               "id": 903,
               "name": "IERC721Enummerable",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1335,
+              "referencedDeclaration": 1368,
               "src": "174:18:4"
             },
             "id": 904,
@@ -503,12 +503,12 @@
         "id": 1072,
         "linearizedBaseContracts": [
           1072,
-          1335,
+          1368,
           878,
-          1355,
+          1388,
           107,
-          1209,
-          1309
+          1242,
+          1342
         ],
         "name": "ERC721Enummerable",
         "nameLocation": "145:17:4",
@@ -1019,7 +1019,7 @@
           },
           {
             "baseFunctions": [
-              1316
+              1349
             ],
             "body": {
               "id": 950,
@@ -1988,7 +1988,7 @@
           },
           {
             "baseFunctions": [
-              1334
+              1367
             ],
             "body": {
               "id": 1044,
@@ -2248,7 +2248,7 @@
           },
           {
             "baseFunctions": [
-              1326
+              1359
             ],
             "body": {
               "id": 1070,
@@ -2613,22 +2613,22 @@
         1072
       ],
       "IERC165": [
-        1209
+        1242
       ],
       "IERC721": [
-        1309
+        1342
       ],
       "IERC721Enummerable": [
-        1335
+        1368
       ],
       "IERC721Metadata": [
-        1355
+        1388
       ],
       "IERC721Receiver": [
-        1372
+        1405
       ],
       "Strings": [
-        1574
+        1642
       ]
     },
     "id": 1073,
@@ -2665,7 +2665,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 1073,
-        "sourceUnit": 1336,
+        "sourceUnit": 1369,
         "src": "80:45:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2690,7 +2690,7 @@
               "id": 903,
               "name": "IERC721Enummerable",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1335,
+              "referencedDeclaration": 1368,
               "src": "174:18:4"
             },
             "id": 904,
@@ -2705,12 +2705,12 @@
         "id": 1072,
         "linearizedBaseContracts": [
           1072,
-          1335,
+          1368,
           878,
-          1355,
+          1388,
           107,
-          1209,
-          1309
+          1242,
+          1342
         ],
         "name": "ERC721Enummerable",
         "nameLocation": "145:17:4",
@@ -3221,7 +3221,7 @@
           },
           {
             "baseFunctions": [
-              1316
+              1349
             ],
             "body": {
               "id": 950,
@@ -4190,7 +4190,7 @@
           },
           {
             "baseFunctions": [
-              1334
+              1367
             ],
             "body": {
               "id": 1044,
@@ -4450,7 +4450,7 @@
           },
           {
             "baseFunctions": [
-              1326
+              1359
             ],
             "body": {
               "id": 1070,
@@ -4808,7 +4808,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-03-10T17:43:15.409Z",
+  "updatedAt": "2022-03-11T18:06:41.496Z",
   "devdoc": {
     "kind": "dev",
     "methods": {
