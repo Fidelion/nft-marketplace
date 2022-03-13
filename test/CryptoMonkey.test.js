@@ -50,4 +50,23 @@ contract("CryptoMonkey", (accounts) => {
 			await contract.mint("https...1").should.be.rejected;
 		});
 	});
+
+	describe("indexing", async () => {
+		it("lists CryptoMonkeyz", async () => {
+			await contract.mint("https...2");
+			await contract.mint("https...3");
+			await contract.mint("https...4");
+			const totalSupply = await contract.totalSupply();
+			let result = [];
+			let CryptoMonkey;
+
+			for (let i = 1; i <= totalSupply; i++) {
+				CryptoMonkey = await contract.cryptoMonkeyz(i - 1);
+				result.push(CryptoMonkey);
+			}
+
+			const expect = ["https...1", "https...2", "https...3", "https...4"];
+			assert.equal(result.join(","), expect.join(","));
+		});
+	});
 });
