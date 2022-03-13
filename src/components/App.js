@@ -23,24 +23,50 @@ export default class App extends Component {
 	async loadAccounts() {
 		const web3 = window.web3;
 		const accounts = await web3.eth.requestAccounts();
-		this.setState({ accounts });
+		this.setState({ account: accounts });
 
 		const networkId = await web3.eth.net.getId();
 		const networkData = await CryptoMonkey.networks[networkId];
 		if (networkData) {
-			const abi = await CryptoMonkey;
-			const address = networkData;
-			// const abi = CryptoMonkey.abi;
-			// const address = networkData.address;
-			var contract = new web3.eth.Contract(abi[address]);
-			console.log(contract);
+			const abi = CryptoMonkey.abi;
+			const address = networkData.address;
+			const contract = new web3.eth.Contract(abi, address);
+			this.setState({ contract });
+			console.log(this.state.contract);
+			const totalSupply = await contract.methods.totalSupply().call();
+			this.setState({ totalSupply });
+
+			for (let i = 1; i <= totalSupply; i++) {
+				const CryptoMonkey = await contract.methods.cryptoMonkeyz(i - 1).call();
+				this.setState({
+					cryptoMonkeyz: [...this.state.cryptoMonkeyz, CryptoMonkey],
+				});
+			}
+
+			console.log(this.state.cryptoMonkeyz);
+		} else {
+			window.alert("Smart contract not deployed");
 		}
 	}
+
+	mint = (cryptoMonkey) => {
+		this.state.contract.methods
+			.mint(cryptoMonkey)
+			.send({ from: this.state.account })
+			.once("minted", () => {
+				this.setState({
+					cryptoMonkeyz: [...this.state.cryptoMonkeyz, cryptoMonkey],
+				});
+			});
+	};
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			accounts: "",
+			account: "",
+			contract: null,
+			totalSupply: 0,
+			cryptoMonkeyz: [],
 		};
 	}
 
