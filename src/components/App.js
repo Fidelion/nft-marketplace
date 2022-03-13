@@ -27,7 +27,14 @@ export default class App extends Component {
 
 		const networkId = await web3.eth.net.getId();
 		const networkData = await CryptoMonkey.networks[networkId];
-		console.log(networkData);
+		if (networkData) {
+			const abi = await CryptoMonkey;
+			const address = networkData;
+			// const abi = CryptoMonkey.abi;
+			// const address = networkData.address;
+			var contract = new web3.eth.Contract(abi[address]);
+			console.log(contract);
+		}
 	}
 
 	constructor(props) {
