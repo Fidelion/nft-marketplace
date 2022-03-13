@@ -71,6 +71,17 @@ export default class App extends Component {
 	}
 
 	render() {
-		return <div>NFT Marketplace</div>;
+		return (
+			<nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+				<div className="navbar-brand col-sm-3 col-md-3 mr-0">
+					CryptoMonkeyz NFT Platform
+				</div>
+				<ul className="navbar-nav px-3">
+					<li className="nav-item text-nowrap d-none d-sm-non d-sm-block">
+						<small className="text-white">{this.state.account}</small>
+					</li>
+				</ul>
+			</nav>
+		);
 	}
 }
