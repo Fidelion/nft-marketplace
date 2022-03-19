@@ -6,9 +6,12 @@ import './interfaces/IERC721.sol';
 import './interfaces/IERC721Receiver.sol';
 import './utils/Strings.sol';
 import './interfaces/IERC721Metadata.sol';
+import './libraries/Counters.sol';
 
 contract ERC721 is IERC721, ERC165, IERC721Metadata {
     using Strings for uint256;
+    using SafeMath for uint256;
+    using Counters for Counters.Counter;
 
     constructor(string memory name_, string memory symbol_) {
         _registerInterface(bytes4(keccak256('balanceOf(bytes4)')^keccak256('ownerOf(bytes4)')^
@@ -25,7 +28,7 @@ contract ERC721 is IERC721, ERC165, IERC721Metadata {
     string private _symbol;
 
     mapping(uint => address) private _tokenOwner;
-    mapping(address => uint) private _ownedTokens;
+    mapping(address => Counters.Counter) private _ownedTokens;
     mapping(uint256 => address) private _tokenApprovals;
     mapping(address => mapping(address => bool)) _operatorApprovals;
 
@@ -57,7 +60,7 @@ contract ERC721 is IERC721, ERC165, IERC721Metadata {
         require(to != address(0), 'ERC721: minting to zero address');
         require(!_exists(tokenId), 'ERC721: token already exists');
         _tokenOwner[tokenId] = to;
-        _ownedTokens[to] += 1;
+        _ownedTokens[to].increment();
 
         emit Transfer(address(0), to, tokenId);
     }
@@ -78,10 +81,10 @@ contract ERC721 is IERC721, ERC165, IERC721Metadata {
         _tokenOwner[_tokenId] = _to;
 
         //update the balance of the address _from
-        _ownedTokens[_from] -= 1;
+        _ownedTokens[_from].decrement();
 
         //update the balance of the address _to
-        _ownedTokens[_to] += 1;
+        _ownedTokens[_to].increment();
 
         emit Transfer(_from, _to, _tokenId);
 
@@ -95,7 +98,7 @@ contract ERC721 is IERC721, ERC165, IERC721Metadata {
 
     function balanceOf(address _owner) public view override returns(uint256) {
         require(_owner != address(0), 'ERC721: NFT assigned to zero address');
-        return _ownedTokens[_owner];
+        return _ownedTokens[_owner].current();
     }
 
     function ownerOf(uint256 _tokenId) public view override returns(address) {
@@ -209,7 +212,7 @@ contract ERC721 is IERC721, ERC165, IERC721Metadata {
         // Clear approvals
         approve(address(0), tokenId);
 
-        _ownedTokens[owner] -= 1;
+        _ownedTokens[owner].decrement();
         delete _tokenOwner[tokenId];
 
         emit Transfer(owner, address(0), tokenId);
